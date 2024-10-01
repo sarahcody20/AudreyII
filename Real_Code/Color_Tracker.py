@@ -4,22 +4,21 @@ import math
 
 class ColorTracker:
     def __init__(self, lower_color, upper_color):
-        """
-        Initialize the ColorTracker with specific color ranges.
-
-        Parameters:
-        lower_color (np.array): Lower HSV bound for the color.
-        upper_color (np.array): Upper HSV bound for the color.
-        """
+        """ Initialize lower and upper colors"""
         self.lower_color = lower_color
         self.upper_color = upper_color
 
         # Initialize video capture
         self.cap = cv2.VideoCapture(1)
+         # Get video dimensions
+        self.width = int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        self.height = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        print(f"Video Dimensions: {self.width} x {self.height}")
 
     def capture_frame(self):
         """Capture a video frame."""
         ret, frame = self.cap.read()
+        
         if not ret:
             return None
         return frame
@@ -62,6 +61,8 @@ class ColorTracker:
 
             # Draw a line between the two centroids
             cv2.line(result, (x1, y1), (x2, y2), (0, 255, 0), 2)
+
+            return distance
 
     def write_hsv(self, result, centroids, hsv_frame):
         """Write HSV values of the centroids on the frame."""
