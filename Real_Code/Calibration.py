@@ -76,24 +76,3 @@ class ImageCalibration:
         # Print distances
         print("Closed Image Distances:", self.closed_distances)
         print("Open Image Distances:", self.open_distances)
-
-# Example of how to use the class in another program
-if __name__ == "__main__":
-    # Initialize parameters
-    lower_color = np.array([30, 100, 100])  # Example HSV lower bound
-    upper_color = np.array([90, 255, 255])  # Example HSV upper bound
-    video_width = 640
-    video_height = 480
-
-    # Create an instance of ImageCalibration
-    calibrator = ImageCalibration(lower_color, upper_color, video_width, video_height)
-
-    # Run the calibration
-    calibrator.run()
-
-    # Access the closed and open distances
-    closed_distances = calibrator.closed_distances
-    open_distances = calibrator.open_distances
-
-    print("Accessed Closed Distances:", closed_distances)
-    print("Accessed Open Distances:", open_distances)
