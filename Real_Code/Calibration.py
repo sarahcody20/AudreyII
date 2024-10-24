@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 import math
 
+
 class ImageCalibration:
     def __init__(self, lower_color, upper_color):
         # Initialize with specific color ranges

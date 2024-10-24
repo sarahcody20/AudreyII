@@ -3,6 +3,7 @@ import cv2
 from Color_Tracker import ColorTracker
 from Calibration import ImageCalibration
 
+
 def get_color_ranges(color_name):
     color_ranges = {
         'blue': (np.array([70, 90, 90]), np.array([120, 255, 255])),
