@@ -2,8 +2,8 @@ import numpy as np
 import cv2
 
 # Define wide range of color you are looking for in HSV
-lower_color = np.array([70, 90, 90])
-upper_color = np.array([120, 250, 255])
+lower_color = np.array([70, 70, 70])
+upper_color = np.array([140, 250, 255])
 
 # Initialize video capture
 cap = cv2.VideoCapture(1)

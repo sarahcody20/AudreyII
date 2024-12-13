@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 import math
 import paho.mqtt.client as mqtt
+import time 
 
 class ColorTracker:
     def __init__(self, lower_color, upper_color, closed_distances, open_distances):
@@ -14,17 +15,17 @@ class ColorTracker:
         self.client = None  # Store MQTT client here
 
     def mqtt_connection(self):
-        broker_address = "10.5.10.72"
+        broker_address = "10.243.85.48"
         broker_port = 1885
 
         # Create a new MQTT client instance
-        self.client = mqtt.Client("computer")
+        self.client = mqtt.Client("vscode")
 
         # Connect to the broker
         self.client.connect(broker_address, broker_port)
 
         # Publish a test message
-        self.client.publish("test", "mqtt connection working")
+        #self.client.publish("test", "mqtt connection working")
         print("message sent")
 
     def capture_frame(self):
@@ -76,6 +77,7 @@ class ColorTracker:
 
         gripper_distance = ((x - x0) / (x1 - x0)) * 100
         gripper_distance = max(0, min(gripper_distance, 100))
+        gripper_distance = 100-gripper_distance
 
         return gripper_distance
 
@@ -85,7 +87,7 @@ class ColorTracker:
             frame = self.capture_frame()
             if frame is None:
                 continue
-            
+
             result, mask = self.process_frame(frame)
             centroids = self.find_centroids(mask)
             self.draw_results(result, centroids)
@@ -93,8 +95,11 @@ class ColorTracker:
             # Optionally normalize active distance
             normalized_distance = self.normalize()
             if normalized_distance is not None:
-                self.client.publish("test", normalized_distance)
-                print(f"Normalized Distance: {normalized_distance:.2f}")
+                # Convert normalized_distance to an integer before publishing
+                int_normalized_distance = int(normalized_distance)
+                self.client.publish("mouth", int_normalized_distance)
+                print(f"Normalized Distance: {int_normalized_distance}")
+                time.sleep(1)
 
             cv2.imshow('Result', result)
 

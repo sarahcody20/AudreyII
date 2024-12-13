@@ -1,12 +1,12 @@
 import numpy as np
 import cv2
-from Color_Tracker import ColorTracker
-from Calibration import ImageCalibration
+from Old_Version.old_tracker import ColorTracker
+from calibration import ImageCalibration
 
 
 def get_color_ranges(color_name):
     color_ranges = {
-        'blue': (np.array([70, 90, 90]), np.array([120, 255, 255])),
+        'blue': (np.array([70, 70, 70]), np.array([120, 255, 255])),
         'red': (np.array([0, 120, 70]), np.array([10, 255, 255])),
     }
 

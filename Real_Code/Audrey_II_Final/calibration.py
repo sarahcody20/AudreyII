@@ -11,10 +11,10 @@ class ImageCalibration:
 
         self.video_width = 480
         self.video_height = 640
-
+    
         # Read in images (MUST be closed.jpg and open.jpg)
-        self.closed_image = cv2.imread(r'C:\Users\sarah\VSCode Projects\AudreyII\Real_Code\closed.jpg')
-        self.open_image = cv2.imread(r'C:\Users\sarah\VSCode Projects\AudreyII\Real_Code\open.jpg')
+        self.closed_image = cv2.imread(r'C:\Users\sarah\VSCode Projects\AudreyII\CV_MPL_PracticeFiles\Audrey_II_Final\closed.jpg')
+        self.open_image = cv2.imread(r'C:\Users\sarah\VSCode Projects\AudreyII\CV_MPL_PracticeFiles\Audrey_II_Final\open.jpg')
 
         if self.closed_image is None:
             print("Error: Could not read closed image. Is it called closed.jpg?")
@@ -92,3 +92,4 @@ class ImageCalibration:
         # Print distances
         print("Closed Image Distances:", self.closed_distances)
         print("Open Image Distances:", self.open_distances)
+
